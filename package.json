@@ -1,0 +1,16 @@
+{
+  "name": "cv-fajartriadyp",
+  "version": "1.0.0",
+  "description": "Fajar Triady Putra - Software Quality Assurance Engineer Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build step required for static site'"
+  },
+  "keywords": [
+    "portfolio",
+    "cv",
+    "resume"
+  ],
+  "author": "Fajar Triady Putra",
+  "license": "MIT"
+} 
