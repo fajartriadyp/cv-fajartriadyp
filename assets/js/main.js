@@ -250,14 +250,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize Education & Certifications
     const educationItems = [
         {
-            degree: 'Bachelor Degree, Information Technology',
-            institution: 'Universitas Al Azhar Indonesia',
-            period: 'Sep 2023 – Present'
-        },
+            degree: 'Bachelor Degree, Information Technology (GPA: 3.6/4.0)',
+            institution: 'University of Al Azhar Indonesia',        },
         {
-            degree: 'Associate Degree, Information Technology (GPA: 3.7/4.0)',
+            degree: 'Associate Degree, Information Technology (GPA: 3.7/4.0)', 
             institution: 'CCIT Faculty of Engineering, University of Indonesia',
-            period: 'Jul 2020 – Aug 2022'
         }
     ];
 
@@ -266,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
             title: 'Certificate of Completion for SMTP 2024',
             issuer: 'Korea Information Security Industry Association (KISIA)',
             date: 'Sep 2024',
-            details: 'Training Period: Aug 12, 2024 - Sep 06, 2024 (30 hours). Focused on information security management principles and practices.'
+            details: 'Focused on information security management principles and practices.'
         },
         {
             title: 'Software Quality Assurance',
