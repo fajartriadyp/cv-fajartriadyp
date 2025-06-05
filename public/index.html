@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fajar Triady Putra - Software Quality Assurance Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="text-slate-300">
+    <div class="fluid-container">
+        <canvas class="fluid-canvas" id="fluid-canvas"></canvas>
+    </div
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    <header class="sticky top-0 z-50 border-b border-slate-700">
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl sm:text-2xl font-bold text-blue-400 hover:text-blue-300 transition-colors">Fajar Triady Putra</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#snpkills" class="nav-link">Skills</a>
+                <a href="#education" class="nav-link">Education & Certs</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-blue-400 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800 border-t border-slate-700">
+            <a href="#experience" class="block py-2 px-4 hover:bg-slate-700 hover:text-blue-400 transition-colors">Experience</a>
+            <a href="#skills" class="block py-2 px-4 hover:bg-slate-700 hover:text-blue-400 transition-colors">Skills</a>
+            <a href="#education" class="block py-2 px-4 hover:bg-slate-700 hover:text-blue-400 transition-colors">Education & Certs</a>
+            <a href="#contact" class="block py-2 px-4 hover:bg-slate-700 hover:text-blue-400 transition-colors">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <section id="home" class="text-center py-8 sm:py-16 md:py-24 card-item rounded-xl mb-8 sm:mb-16 shadow-2xl">
+            <div class="profile-image-container mx-auto mb-6 sm:mb-8">
+                <img src="assets/images/photos.PNG" 
+                     alt="Fajar Triady Putra" 
+                     class="w-full h-full object-cover"
+                     onerror="this.onerror=null; 
+                             this.src='https://placehold.co/300x300/3b82f6/FFFFFF?text=FTP';
+                             console.log('Profile image not found, using placeholder');">
+            </div>
+            <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Software Quality Assurance Engineer</h1>
+            <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed px-4">
+                Results-oriented QA Engineer with nearly 3 years of dedicated experience in comprehensive manual and automated testing across diverse web, mobile, and IoT ecosystems, including hands-on hardware and firmware validation. Passionate about championing quality and ensuring products deliver exceptional user value.
+            </p>
+        </section>
+
+        <section id="experience" class="py-8 sm:py-16">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-16">
+                Professional Journey
+            </h2>
+            <div class="relative max-w-3xl mx-auto px-4">
+                <div class="absolute left-1/2 w-1 h-full bg-slate-700 transform -translate-x-1/2"></div>
+                <div id="timeline-container" class="space-y-8 sm:space-y-12">
+                    <!-- Timeline items will be dynamically inserted by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-8 sm:py-16 my-8 sm:my-16 card-item rounded-xl shadow-2xl">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4">
+                Core Competencies & Skills
+            </h2>
+            <p class="text-center text-slate-400 mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
+                Explore my technical capabilities: a visual summary of proficiency in key QA domains, including specialized IoT and hardware testing, complemented by a detailed list of technologies and methodologies I master.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 sm:gap-12 items-center px-4 sm:px-6">
+                <div class="md:col-span-2 chart-container mx-auto w-full max-w-sm">
+                    <canvas id="skillsRadarChart"></canvas>
+                </div>
+                <div id="skills-list" class="md:col-span-3 space-y-4 sm:space-y-6">
+                    <!-- Skills will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-8 sm:py-16">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-16">
+                Education & Certifications
+            </h2>
+            <p class="text-center text-slate-400 mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
+                A solid academic foundation combined with ongoing professional development through certifications. Click on any certification to view further details.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
+                <div class="education-list space-y-4 sm:space-y-6">
+                    <h3 class="text-xl sm:text-2xl font-semibold border-b-2 border-blue-500 pb-3 mb-4">Formal Education</h3>
+                    <!-- Education items will be dynamically inserted here -->
+                </div>
+                <div class="certifications-list space-y-3">
+                    <h3 class="text-xl sm:text-2xl font-semibold border-b-2 border-blue-500 pb-3 mb-4">Certifications & Training</h3>
+                    <!-- Certification items will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="bg-slate-900 text-slate-400 py-8 sm:py-16 border-t border-slate-700">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-slate-200">Get In Touch</h2>
+            <p class="mb-6 sm:mb-8">Open to discussing new opportunities and challenges in software quality assurance, especially within complex IoT systems.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 text-base sm:text-lg">
+                <a href="mailto:triadyputra3@gmail.com" class="hover:text-blue-400 transition-colors">triadyputra3@gmail.com</a>
+                <span class="hidden sm:inline text-slate-600">&bull;</span>
+                <a href="https://www.linkedin.com/in/fajartriadyp/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors">linkedin.com/in/fajartriadyp</a>
+                <span class="hidden sm:inline text-slate-600">&bull;</span>
+                <a href="https://wa.me/6288809111952?text=Hi%20Photon" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors">
+                    (+62) 888-0911-1952
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html> 
