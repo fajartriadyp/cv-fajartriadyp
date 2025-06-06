@@ -247,89 +247,204 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Initialize Education & Certifications
+    // Education Data
     const educationItems = [
         {
-            degree: 'Bachelor Degree, Information Technology (GPA: 3.6/4.0)',
-            institution: 'University of Al Azhar Indonesia',        },
+            degree: "Bachelor Degree, Information Technology",
+            institution: "University of Al Azhar Indonesia",
+            period: "2023 - 2025",
+            gpa: "3.6/4.0",
+            details: "Relevant Coursework: Data Analytics, Machine Learning, Internet of Things (IoT), Cybersecurity",
+            logo: "assets/images/uai.png"
+        },
         {
-            degree: 'Associate Degree, Information Technology (GPA: 3.7/4.0)', 
-            institution: 'CCIT Faculty of Engineering, University of Indonesia',
+            degree: "Associate Degree, Information Technology",
+            institution: "CCIT Faculty of Engineering, University of Indonesia",
+            period: "2020 - 2022",
+            gpa: "3.7/4.0",
+            details: "Relevant Coursework: Big Data Analytics, IoT Systems, System Administration, Network Security",
+            logo: "assets/images/ui.png"
         }
     ];
 
-    const certItems = [
+    // Technical Certifications Data
+    const technicalCertifications = [
         {
-            title: 'Certificate of Completion for SMTP 2024',
-            issuer: 'Korea Information Security Industry Association (KISIA)',
-            date: 'Sep 2024',
-            details: 'Focused on information security management principles and practices.'
+            title: "Certificate of Completion for SMTP 2024",
+            issuer: "Korea Information Security Industry Association (KISIA)",
+            date: "Sep 2024",
+            details: "Focused on information security management principles and practices, including cyber threat intelligence, incident response, and security operations center management."
         },
         {
-            title: 'Software Quality Assurance',
-            issuer: 'Digital Talent Scholarship, KOMINFO',
-            date: 'Oct 2023',
-            details: 'Coursework: Basic Quality Assurance, Compiling Bug Reports, API Testing Automation.'
+            title: "Software Quality Assurance",
+            issuer: "Digital Talent Scholarship, KOMINFO",
+            date: "Oct 2023",
+            details: "Comprehensive training in quality assurance fundamentals, test automation, and API testing. Covered topics include test planning, execution, and defect management."
         },
         {
-            title: 'Ethical Hacking for Cyber Security Specialists',
-            issuer: 'Course-Net with IT-Box',
-            date: 'Jul 2023',
-            details: 'Coursework: SQL Injection, Penetration Testing, Threat Intelligence, Vulnerability Detection.'
+            title: "Ethical Hacking for Cyber Security Specialists",
+            issuer: "Course-Net with IT-Box",
+            date: "Jul 2023",
+            details: "Advanced training in penetration testing, vulnerability assessment, and security analysis. Practical experience with industry-standard tools and methodologies."
         },
         {
-            title: 'Product & Business Development Officer',
-            issuer: 'Bank Muamalat (Virtual Internship)',
-            date: 'Jul 2022',
-            details: 'Coursework: Business Aspect & Goals, Research Assessment, Product & Market Fit, Data Analysis.'
+            title: "IoT Fundamentals: IoT Security",
+            issuer: "Cisco Networking Academy",
+            date: "Dec 2021",
+            details: "Comprehensive course on IoT security principles, network protocols, and device security. Hands-on experience with security implementations for IoT systems."
         },
         {
-            title: 'Digital Creative Economy',
-            issuer: 'Skilvul Academy (KEMENPAREKRAF)',
-            date: 'Dec 2021',
-            details: 'Coursework: Web Development (HTML, CSS, PHP, Laravel), Digital Marketing (Google/Facebook Ads, SEO).'
+            title: "IoT Fundamentals: Big Data & Analytics",
+            issuer: "Cisco Networking Academy",
+            date: "Dec 2021",
+            details: "Advanced training in IoT data collection, analysis, and visualization. Focus on real-time data processing and analytics frameworks."
         },
         {
-            title: 'IoT & Machine Learning Certifications',
-            issuer: 'Cisco & Dicoding',
-            date: '2021',
-            details: 'Completed multiple courses including: IoT Fundamentals (Big Data & Analytics, IoT Systems covering device security and communication protocols), Belajar Machine Learning Untuk Pemula, and Memulai Pemrograman Dengan Python.'
+            title: "Network Ethical Hacking with Kali",
+            issuer: "Udemy",
+            date: "Aug 2021",
+            details: "Practical training in network security assessment and ethical hacking using Kali Linux. Covered various attack vectors and defense strategies."
         }
     ];
 
-    const educationContainer = document.querySelector('.education-list');
-    educationItems.forEach(item => {
-        const el = document.createElement('div');
-        el.className = "card-item p-5 rounded-lg shadow-lg";
-        el.innerHTML = `
-            <h4 class="font-bold text-lg text-slate-100">${item.degree}</h4>
-            <p class="text-slate-400">${item.institution}</p>
-            <p class="text-sm text-slate-500">${item.period}</p>
-        `;
-        educationContainer.appendChild(el);
-    });
+    // Professional Development Certifications
+    const professionalCertifications = [
+        {
+            title: "Product & Business Development Officer",
+            issuer: "Bank Muamalat (Virtual Internship)",
+            date: "Jul 2022",
+            details: "Virtual internship focused on product development lifecycle, market analysis, and business strategy. Developed skills in project management and stakeholder communication."
+        },
+        {
+            title: "Digital Creative Economy",
+            issuer: "Skilvul Academy (KEMENPAREKRAF)",
+            date: "Dec 2021",
+            details: "Intensive program covering web development fundamentals and digital marketing strategies. Practical projects in HTML, CSS, JavaScript, and digital advertising."
+        },
+        {
+            title: "Machine Learning Fundamentals",
+            issuer: "Dicoding",
+            date: "Apr 2021",
+            details: "Introduction to machine learning concepts, algorithms, and practical implementations using Python. Included projects in data preprocessing and model development."
+        },
+        {
+            title: "Python Programming",
+            issuer: "Dicoding",
+            date: "Mar 2021",
+            details: "Comprehensive Python programming course covering core concepts, data structures, and best practices. Included practical projects and problem-solving exercises."
+        },
+        {
+            title: "Basic SQL & Database Management",
+            issuer: "Dicoding",
+            date: "Feb 2021",
+            details: "Fundamentals of SQL and database management, including query optimization, database design, and data manipulation."
+        },
+        {
+            title: "AWS Cloud Practitioner Essentials",
+            issuer: "AWS Training and Certification",
+            date: "Jan 2021",
+            details: "Overview of AWS Cloud concepts, services, security, architecture, pricing, and support. Practical experience with core AWS services and best practices."
+        }
+    ];
 
-    const certContainer = document.querySelector('.certifications-list');
-    certItems.forEach(item => {
-        const el = document.createElement('div');
-        el.className = "card-item rounded-lg shadow-lg";
-        el.innerHTML = `
-            <button class="accordion-trigger-button w-full text-left p-4 hover:bg-slate-700/50 transition-colors group rounded-t-lg">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h4 class="font-semibold text-md text-slate-200 group-hover:text-blue-300">${item.title}</h4>
-                        <p class="text-sm text-slate-500">${item.issuer} - ${item.date}</p>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Populate education section
+        const educationContainer = document.querySelector('.education-list');
+        if (educationContainer) {
+            educationItems.forEach(item => {
+                const el = document.createElement('div');
+                el.className = "card-item p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300";
+                el.innerHTML = `
+                    <div class="flex items-center space-x-4 mb-4">
+                        <img src="${item.logo}" alt="${item.institution} logo" class="w-16 h-16 object-contain rounded-lg bg-white p-2">
+                        <div>
+                            <h4 class="font-bold text-lg text-slate-100">${item.degree}</h4>
+                            <p class="text-blue-400">${item.institution}</p>
+                            <p class="text-sm text-slate-400">${item.period}</p>
+                        </div>
                     </div>
-                    <svg class="w-5 h-5 text-blue-400 transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <div class="space-y-2">
+                        <p class="text-sm text-blue-400">GPA: ${item.gpa}</p>
+                        <p class="text-sm text-slate-400">${item.details}</p>
+                    </div>
+                `;
+                educationContainer.appendChild(el);
+            });
+        }
+
+        // Function to create certification card
+        function createCertificationCard(item) {
+            const el = document.createElement('div');
+            el.className = "certification-card bg-slate-800/50 rounded-lg p-4 hover:bg-slate-700/50 transition-all duration-300";
+            el.innerHTML = `
+                <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-slate-200 mb-1">${item.title}</h4>
+                        <p class="text-sm text-blue-400">${item.issuer}</p>
+                        <p class="text-sm text-slate-400">${item.date}</p>
+                    </div>
+                    <button class="expand-btn ml-4 text-blue-400 hover:text-blue-300 transition-colors">
+                        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
                 </div>
-            </button>
-            <div class="accordion-content">
-                <div class="px-4 pt-2 pb-4">
-                    <p class="text-sm text-slate-400">${item.details}</p>
+                <div class="cert-details hidden mt-4 pt-4 border-t border-slate-700/50">
+                    <p class="text-sm text-slate-400 leading-relaxed">${item.details}</p>
                 </div>
-            </div>
-        `;
-        certContainer.appendChild(el);
+            `;
+
+            // Add click event listener
+            const expandBtn = el.querySelector('.expand-btn');
+            const details = el.querySelector('.cert-details');
+            const icon = expandBtn.querySelector('svg');
+
+            expandBtn.addEventListener('click', () => {
+                const isExpanded = !details.classList.contains('hidden');
+                
+                // Close all other open cards in the same category
+                const parentList = el.closest('.technical-certs-list, .professional-certs-list');
+                if (parentList) {
+                    parentList.querySelectorAll('.cert-details').forEach(detail => {
+                        if (detail !== details && !detail.classList.contains('hidden')) {
+                            detail.classList.add('hidden');
+                            detail.parentElement.querySelector('svg').classList.remove('rotate-180');
+                        }
+                    });
+                }
+
+                // Toggle current card
+                details.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+
+                // Smooth scroll if expanding
+                if (!isExpanded) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+
+            return el;
+        }
+
+        // Populate technical certifications
+        const technicalCertsContainer = document.querySelector('.technical-certs-list');
+        if (technicalCertsContainer) {
+            technicalCertifications.forEach(cert => {
+                technicalCertsContainer.appendChild(createCertificationCard(cert));
+            });
+        }
+
+        // Populate professional certifications
+        const professionalCertsContainer = document.querySelector('.professional-certs-list');
+        if (professionalCertsContainer) {
+            professionalCertifications.forEach(cert => {
+                professionalCertsContainer.appendChild(createCertificationCard(cert));
+            });
+        }
+
+        // Initialize other sections...
+        // ... rest of your initialization code ...
     });
 
     // Mobile Menu Toggle
