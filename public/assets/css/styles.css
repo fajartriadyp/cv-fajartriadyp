@@ -1,11 +1,15 @@
 /* Base Styles */
 body {
-    font-family: 'Inter', sans-serif;
-    color: #cbd5e1; 
+    font-family: 'Inter', sans-serif !important;
+    color: #cbd5e1 !important; 
     overflow-x: hidden; 
     min-height: 100vh;
     position: relative;
-    background: #0f172a;
+    background: #0f172a !important;
+}
+
+html {
+    background: #0f172a !important;
 }
 
 /* Fluid Background */
@@ -104,8 +108,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Card and Timeline Styles */
 .card-item {
-    background-color: rgba(30, 41, 59, 0.8); 
-    border: 1px solid rgba(51, 65, 85, 0.7);
+    background-color: rgba(30, 41, 59, 0.8) !important; 
+    border: 1px solid rgba(51, 65, 85, 0.7) !important;
     backdrop-filter: blur(5px);
 }
 
