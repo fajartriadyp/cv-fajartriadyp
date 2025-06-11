@@ -3,6 +3,6 @@ handlers:
 - url: /
   static_files: index.html
   upload: index.html
-
+ 
 - url: /assets
   static_dir: assets 

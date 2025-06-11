@@ -1,135 +1,191 @@
 console.log('App.js loaded');
 
-// Function to populate education section
-function populateEducation() {
-    console.log('Populating education section...');
-    const educationList = document.querySelector('.education-list');
-    
-    if (!educationList) {
-        console.error('Education list container not found');
-        return;
-    }
-
-    // Clear any existing content after the heading
-    const heading = educationList.querySelector('h3');
-    if (heading) {
-        heading.insertAdjacentHTML('afterend', '<div id="education-items"></div>');
-        const container = document.getElementById('education-items');
-        
-        educationData.forEach(item => {
-            const educationCard = document.createElement('div');
-            educationCard.className = 'card-item p-4 rounded-lg bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300';
-            educationCard.innerHTML = `
-                <div class="flex items-center space-x-4">
-                    <img src="${item.logo}" alt="${item.institution} logo" 
-                         class="w-12 h-12 object-contain rounded-lg bg-white p-1"
-                         onerror="this.onerror=null; this.src='https://placehold.co/48x48/3b82f6/FFFFFF?text=EDU'">
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-slate-200">${item.degree}</h4>
-                        <p class="text-sm text-blue-400">${item.institution}</p>
-                        <p class="text-sm text-slate-400">${item.period} | GPA: ${item.gpa}</p>
-                        <p class="text-sm text-slate-500 mt-2">${item.details}</p>
-                    </div>
-                </div>
-            `;
-            container.appendChild(educationCard);
-        });
-    } else {
-        console.error('Education heading not found');
-    }
+// Initialize dark mode
+function initDarkMode() {
+    const darkMode = localStorage.getItem('darkMode') === 'true';
+    document.documentElement.classList.toggle('dark', darkMode);
+    document.body.classList.toggle('dark', darkMode);
+    updateThemeToggleButton(darkMode);
 }
 
-// Function to create certification card
-function createCertificationCard(cert) {
-    const card = document.createElement('div');
-    card.className = 'certification-card bg-slate-800/50 rounded-lg p-4 hover:bg-slate-700/50 transition-all duration-300 mb-4';
-    card.innerHTML = `
-        <div class="flex items-start justify-between">
-            <div class="flex-1">
-                <h4 class="font-semibold text-slate-200 mb-1">${cert.title}</h4>
-                <p class="text-sm text-blue-400">${cert.issuer}</p>
-                <p class="text-sm text-slate-400">${cert.date}</p>
-            </div>
-            <button class="expand-btn ml-4 text-blue-400 hover:text-blue-300 transition-colors">
-                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-            </button>
-        </div>
-        <div class="cert-details hidden mt-4 pt-4 border-t border-slate-700/50">
-            <p class="text-sm text-slate-400 leading-relaxed">${cert.details}</p>
-        </div>
-    `;
+// Toggle dark mode
+function toggleDarkMode() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    document.body.classList.toggle('dark', isDark);
+    localStorage.setItem('darkMode', isDark);
+    updateThemeToggleButton(isDark);
+    updateChartColors(isDark);
+}
 
-    // Add click event listener
-    const expandBtn = card.querySelector('.expand-btn');
-    const details = card.querySelector('.cert-details');
-    const icon = expandBtn.querySelector('svg');
-
-    expandBtn.addEventListener('click', () => {
-        const isExpanded = !details.classList.contains('hidden');
-        
-        // Close all other open cards in the same category
-        const parentList = card.closest('.certifications-list');
-        if (parentList) {
-            parentList.querySelectorAll('.cert-details').forEach(detail => {
-                if (detail !== details && !detail.classList.contains('hidden')) {
-                    detail.classList.add('hidden');
-                    detail.parentElement.querySelector('svg').classList.remove('rotate-180');
-                }
-            });
-        }
-
-        // Toggle current card
-        details.classList.toggle('hidden');
-        icon.classList.toggle('rotate-180');
-
-        // Smooth scroll if expanding
-        if (!isExpanded) {
-            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+function updateThemeToggleButton(isDark) {
+    const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
+    toggleBtns.forEach(btn => {
+        const sunIcon = btn.querySelector('.sun-icon');
+        const moonIcon = btn.querySelector('.moon-icon');
+        if (sunIcon && moonIcon) {
+            sunIcon.classList.toggle('hidden', isDark);
+            moonIcon.classList.toggle('hidden', !isDark);
         }
     });
-
-    return card;
 }
 
-// Function to populate certifications section
-function populateCertifications() {
-    console.log('Populating certifications section...');
-    const certsList = document.querySelector('.certifications-list');
-    
-    if (!certsList) {
-        console.error('Certifications list container not found');
-        return;
-    }
+function updateChartColors(isDark) {
+    const chart = Chart.getChart('skillsRadarChart');
+    if (chart) {
+        const newColors = {
+            backgroundColor: isDark ? 'rgba(96, 165, 250, 0.4)' : 'rgba(37, 99, 235, 0.2)',
+            borderColor: isDark ? 'rgba(96, 165, 250, 1)' : 'rgba(37, 99, 235, 0.8)',
+            pointBackgroundColor: isDark ? 'rgba(96, 165, 250, 1)' : 'rgba(37, 99, 235, 0.8)',
+            pointBorderColor: isDark ? '#0f172a' : '#ffffff',
+            pointHoverBackgroundColor: isDark ? '#fff' : '#0f172a',
+            pointHoverBorderColor: isDark ? 'rgba(96, 165, 250, 1)' : 'rgba(37, 99, 235, 0.8)'
+        };
 
-    // Clear any existing content after the heading
-    const heading = certsList.querySelector('h3');
-    if (heading) {
-        heading.insertAdjacentHTML('afterend', '<div id="certification-items"></div>');
-        const container = document.getElementById('certification-items');
+        chart.data.datasets[0].backgroundColor = newColors.backgroundColor;
+        chart.data.datasets[0].borderColor = newColors.borderColor;
+        chart.data.datasets[0].pointBackgroundColor = newColors.pointBackgroundColor;
+        chart.data.datasets[0].pointBorderColor = newColors.pointBorderColor;
+        chart.data.datasets[0].pointHoverBackgroundColor = newColors.pointHoverBackgroundColor;
+        chart.data.datasets[0].pointHoverBorderColor = newColors.pointHoverBorderColor;
+
+        chart.options.scales.r.grid.color = isDark ? 'rgba(51, 65, 85, 0.8)' : 'rgba(203, 213, 225, 0.8)';
+        chart.options.scales.r.angleLines.color = isDark ? 'rgba(51, 65, 85, 0.8)' : 'rgba(203, 213, 225, 0.8)';
+        chart.options.scales.r.pointLabels.color = isDark ? '#e2e8f0' : '#1e293b';
         
-        // Sort certifications by date (newest first)
-        const sortedCerts = certificationsData.sort((a, b) => {
-            return new Date(b.date) - new Date(a.date);
-        });
-
-        // Create and append certification cards
-        sortedCerts.forEach(cert => {
-            container.appendChild(createCertificationCard(cert));
-        });
-    } else {
-        console.error('Certifications heading not found');
+        chart.update();
     }
 }
 
-// Initialize when DOM is loaded
+// Initialize mobile menu
+function initMobileMenu() {
+    const menuBtn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    
+    if (menuBtn && menu) {
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            const expanded = menu.classList.contains('hidden') ? 'false' : 'true';
+            menuBtn.setAttribute('aria-expanded', expanded);
+        });
+    }
+}
+
+// Initialize skills chart
+function initSkillsChart() {
+    const ctx = document.getElementById('skillsRadarChart');
+    if (!ctx) return;
+
+    const data = {
+        labels: [
+            'Testing Framework & Tools',
+            'Programming & Scripting',
+            'Database & Version Control',
+            'IoT & Hardware Testing',
+            'Cloud Services & DevOps',
+            'Security Testing'
+        ],
+        datasets: [{
+            data: [90, 85, 80, 85, 75, 80],
+            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+            borderColor: 'rgb(59, 130, 246)',
+            borderWidth: 2,
+            pointBackgroundColor: 'rgb(59, 130, 246)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(59, 130, 246)'
+        }]
+    };
+
+    const config = {
+        type: 'radar',
+        data: data,
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        stepSize: 20
+                    }
+                }
+            }
+        }
+    };
+
+    return new Chart(ctx, config);
+}
+
+// Initialize education section
+function initEducation() {
+    const container = document.querySelector('.education-list');
+    if (!container) return;
+
+    const html = educationData.map(edu => `
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
+            <div class="flex items-center mb-4">
+                <img src="${edu.logo}" alt="${edu.institution}" class="w-12 h-12 object-contain mr-4">
+                <div>
+                    <h4 class="text-lg font-semibold text-slate-900 dark:text-slate-100">${edu.degree}</h4>
+                    <p class="text-slate-600 dark:text-slate-400">${edu.institution}</p>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <p class="text-slate-700 dark:text-slate-300"><span class="font-medium">Period:</span> ${edu.period}</p>
+                <p class="text-slate-700 dark:text-slate-300"><span class="font-medium">GPA:</span> ${edu.gpa}</p>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">${edu.details}</p>
+            </div>
+        </div>
+    `).join('');
+
+    container.innerHTML = html;
+}
+
+// Initialize certifications section
+function initCertifications() {
+    const container = document.querySelector('.certifications-list');
+    if (!container) return;
+
+    const html = certificationsData.map(cert => `
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
+            <div class="flex justify-between items-start mb-2">
+                <h4 class="text-lg font-semibold text-slate-900 dark:text-slate-100">${cert.title}</h4>
+                <span class="text-sm text-slate-500 dark:text-slate-400">${cert.date}</span>
+            </div>
+            <p class="text-slate-700 dark:text-slate-300 mb-2">${cert.issuer}</p>
+            <p class="text-sm text-slate-600 dark:text-slate-400">${cert.details}</p>
+            <span class="inline-block mt-3 text-xs font-medium px-2 py-1 rounded ${
+                cert.type === 'technical' 
+                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300' 
+                : 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300'
+            }">
+                ${cert.type.charAt(0).toUpperCase() + cert.type.slice(1)}
+            </span>
+        </div>
+    `).join('');
+
+    container.innerHTML = html;
+}
+
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded, initializing education and certifications...');
     try {
-        populateEducation();
-        populateCertifications();
-        console.log('Education and certifications populated successfully');
+        // Initialize dark mode
+        initDarkMode();
+        document.getElementById('theme-toggle')?.addEventListener('click', toggleDarkMode);
+        document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleDarkMode);
+
+        // Initialize components
+        initMobileMenu();
+        initSkillsChart();
+        initEducation();
+        initCertifications();
+
+        console.log('Initialization complete');
     } catch (error) {
         console.error('Error during initialization:', error);
     }
